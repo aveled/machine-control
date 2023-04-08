@@ -146,3 +146,9 @@ function writeHeader() {
     writeBlock(gFormat.format(95), feedOutput.format(0.25));
     writeBlock(gFormat.format(0), xOutput.format(150 / 2), zOutput.format(50));
 }
+
+
+
+function getFeed(f) {
+    return feedOutput.format(f); // use feed value
+}
