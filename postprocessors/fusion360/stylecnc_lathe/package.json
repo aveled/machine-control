@@ -1,0 +1,24 @@
+{
+    "name": "@aveled/postprocessor-fusion360-stylecnc-lathe",
+    "version": "0.0.0-0",
+    "description": "Style CNC Lathe Post Processor for Fusion 360",
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
+    "license": "SEE LICENSE IN LICENSE",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aveled/machine-control"
+    },
+    "bugs": {
+        "email": "source@aveled.com",
+        "url": "https://github.com/aveled/machine-control/issues"
+    },
+    "engines": {
+        "node": ">=18",
+        "npm": ">=8"
+    },
+    "type": "module",
+    "scripts": {
+        "clean": "rm -rf ./distribution",
+        "build": "pnpm run clean && node ./scripts/build.js"
+    }
+}
