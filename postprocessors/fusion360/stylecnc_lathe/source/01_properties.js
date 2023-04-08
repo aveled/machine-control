@@ -41,7 +41,7 @@ properties = {
         description: 'The amount by which the sequence number is incremented by in each block.',
         group: 'formats',
         type: 'integer',
-        value: 1,
+        value: 10,
         scope: 'post'
     },
     maximumSpindleSpeed: {

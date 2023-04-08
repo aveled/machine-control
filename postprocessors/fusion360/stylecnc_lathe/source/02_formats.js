@@ -1,5 +1,12 @@
-var gFormat = createFormat({ prefix: "G", decimals: 2 });
-var mFormat = createFormat({ prefix: "M", decimals: 2 });
+var gFormat = createFormat({ prefix: 'G', decimals: 2, minDigitsLeft: 2, suffix: numberTextSpacing });
+var mFormat = createFormat({ prefix: 'M', decimals: 2, minDigitsLeft: 2, suffix: numberTextSpacing });
+
+var xFormat = createFormat({ decimals: (unit == MM ? 3 : 4), suffix: numberTextSpacing, forceDecimal: true, scale: 2 }); // diameter mode
+var yFormat = createFormat({ decimals: (unit == MM ? 3 : 4), suffix: numberTextSpacing, forceDecimal: true });
+var zFormat = createFormat({ decimals: (unit == MM ? 3 : 4), suffix: numberTextSpacing, forceDecimal: true });
+
+var feedFormat = createFormat({ decimals: (unit == MM ? 4 : 5), forceDecimal: true });
+var rpmFormat = createFormat({ decimals: 0 });
 
 
 const M_FUNCTIONS = {
@@ -21,3 +28,12 @@ const M_FUNCTIONS = {
     SPINDLE_START_CCW_GEAR3: 43,
     SPINDLE_START_CCW_GEAR4: 44,
 };
+
+
+
+var xOutput = createVariable({ prefix: 'X' }, xFormat);
+var yOutput = createVariable({ prefix: 'Y' }, yFormat);
+var zOutput = createVariable({ onchange: function () { retracted[Z] = false; }, prefix: 'Z' }, zFormat);
+
+var feedOutput = createVariable({ prefix: 'F' }, feedFormat);
+var sOutput = createVariable({ prefix: 'S', force: true }, rpmFormat);

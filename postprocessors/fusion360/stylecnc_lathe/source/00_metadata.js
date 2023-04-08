@@ -25,3 +25,10 @@ allowedCircularPlanes = 1 << PLANE_ZX; // allow ZX plane only
 
 
 debugMode = true;
+
+
+const numberTextSpacing = '  ';
+
+const headerDashLine = '---------------------------------------------------------------------------------';
+const headerTitle    = '            File generated with STYLE Lathe Fusion 360 Post Processor            ';
+const headerEmptyLine = headerDashLine.replace(/-/g, ' ');

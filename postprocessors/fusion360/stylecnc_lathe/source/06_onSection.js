@@ -1,9 +1,7 @@
 function onSection() {
+    writeHeader();
+
     checkSectionType();
-
-
-    stockDiamater = getParameter('stock-diameter');
-    writeComment('Stock Diameter: ' + stockDiamater);
 
 
     writeEmptyBlock();
