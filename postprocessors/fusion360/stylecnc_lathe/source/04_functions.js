@@ -26,12 +26,6 @@ function getSequenceNumber() {
 }
 
 
-function onCommand(command) {
-    switch (command) {
-    }
-}
-
-
 function checkSectionType() {
     if (currentSection.getType() != TYPE_TURNING) {
         if (!hasParameter('operation-strategy') || (getParameter('operation-strategy') != 'drill')) {
@@ -44,11 +38,6 @@ function checkSectionType() {
             return;
         }
     }
-}
-
-
-function onClose() {
-    writeBlock(mFormat.format(M_FUNCTIONS.PROGRAM_RESTART));
 }
 
 
@@ -79,9 +68,9 @@ function writeBlock() {
 function writeEmptyBlock() {
     if (getProperty('showSequenceNumbers') == 'true') {
         if (optionalSection) {
-            writeWords('/', getSequenceNumber(), '');
+            writeWords('/', getSequenceNumber(), ' ');
         } else {
-            writeWords2(getSequenceNumber(), '');
+            writeWords2(getSequenceNumber(), ' ');
         }
     } else {
         writeEmptyLine();
@@ -89,9 +78,6 @@ function writeEmptyBlock() {
 }
 
 
-function onComment(message) {
-    writeComment(message);
-}
 
 function formatComment(text) {
     return '(' + text + ')';
@@ -134,16 +120,26 @@ function writeHeader() {
     writeComment(headerDashLine);
 
 
-    writeBlock(gFormat.format(30), xOutput.format(0), zOutput.format(100));
+    const insideDiameter = 0;
+    const outsideJaws = 20;
+    writeBlock(gFormat.format(30), xOutput.format(insideDiameter), zOutput.format(outsideJaws));
 
     const outsideDiameter = getParameter('stock-diameter');
     const materialLength = 20;
     writeBlock(gFormat.format(31), xOutput.format(outsideDiameter / 2), zOutput.format(materialLength));
 
     writeBlock(gFormat.format(90), gFormat.format(40));
-    writeBlock(gFormat.format(92), sOutput.format(2550));
-    writeBlock(gFormat.format(96), sOutput.format(240));
-    writeBlock(gFormat.format(95), feedOutput.format(0.25));
+
+    const rpmMainSpindle = 2550;
+    writeBlock(gFormat.format(92), sOutput.format(rpmMainSpindle));
+
+    const constantSurfaceSpeed = 240;
+    writeBlock(gFormat.format(96), sOutput.format(constantSurfaceSpeed));
+
+    const perRevolutionFeed = 0.25;
+    writeBlock(gFormat.format(95), feedOutput.format(perRevolutionFeed));
+
+    // rapid position safe plane
     writeBlock(gFormat.format(0), xOutput.format(150 / 2), zOutput.format(50));
 }
 
@@ -151,4 +147,10 @@ function writeHeader() {
 
 function getFeed(f) {
     return feedOutput.format(f); // use feed value
+}
+
+
+
+function hasCooling(tool) {
+    return tool.coolant === 1;
 }

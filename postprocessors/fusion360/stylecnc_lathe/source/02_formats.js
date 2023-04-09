@@ -1,6 +1,8 @@
 var gFormat = createFormat({ prefix: 'G', decimals: 2, minDigitsLeft: 2, suffix: numberTextSpacing });
 var mFormat = createFormat({ prefix: 'M', decimals: 2, minDigitsLeft: 2, suffix: numberTextSpacing });
 
+var toolFormat = createFormat({ decimals: 0, minDigitsLeft: 2 });
+
 var xFormat = createFormat({ decimals: (unit == MM ? 3 : 4), suffix: numberTextSpacing, forceDecimal: true, scale: 2 }); // diameter mode
 var yFormat = createFormat({ decimals: (unit == MM ? 3 : 4), suffix: numberTextSpacing, forceDecimal: true });
 var zFormat = createFormat({ decimals: (unit == MM ? 3 : 4), suffix: numberTextSpacing, forceDecimal: true });
