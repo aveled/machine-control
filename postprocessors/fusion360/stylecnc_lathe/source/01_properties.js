@@ -1,4 +1,29 @@
 properties = {
+    insideDiameter: {
+        title: 'Inside diameter',
+        description: 'Dimension of inside diameter in mm.',
+        group: 'Dimensions',
+        type: 'integer',
+        value: 0,
+        scope: 'post'
+    },
+    outsideJaws: {
+        title: 'Outside jaws',
+        description: 'Dimension outside jaws in mm.',
+        group: 'Dimensions',
+        type: 'integer',
+        value: 100,
+        scope: 'post'
+    },
+    materialLength: {
+        title: 'Material length',
+        description: 'Dimension of material length in mm.',
+        group: 'Dimensions',
+        type: 'integer',
+        value: 200,
+        scope: 'post'
+    },
+
     writeMachine: {
         title: 'Write machine',
         description: 'Output the machine settings in the header of the code.',
@@ -49,8 +74,8 @@ properties = {
         description: 'Defines the maximum spindle speed allowed by your machines.',
         group: 'configuration',
         type: 'integer',
-        range: [0, 999999999],
-        value: 3500,
+        range: [0, 9999],
+        value: 2550,
         scope: 'post'
     },
 };

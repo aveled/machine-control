@@ -120,27 +120,39 @@ function writeHeader() {
     writeComment(headerDashLine);
 
 
-    const insideDiameter = 0;
-    const outsideJaws = 20;
-    writeBlock(gFormat.format(30), xOutput.format(insideDiameter), zOutput.format(outsideJaws));
+    const insideDiameter = getProperty('insideDiameter') || 0;
+    const outsideJaws = getProperty('outsideJaws') || 100;
+    writeBlock(gFormat.format(30), xOutput.format(insideDiameter / 2), zOutput.format(outsideJaws));
+    xOutput.reset();
+    zOutput.reset();
 
     const outsideDiameter = getParameter('stock-diameter');
-    const materialLength = 20;
+    const materialLength = getProperty('materialLength') || 200;
     writeBlock(gFormat.format(31), xOutput.format(outsideDiameter / 2), zOutput.format(materialLength));
+    xOutput.reset();
+    zOutput.reset();
 
     writeBlock(gFormat.format(90), gFormat.format(40));
 
-    const rpmMainSpindle = 2550;
+    const rpmMainSpindle = getProperty('maximumSpindleSpeed') || 2550;
     writeBlock(gFormat.format(92), sOutput.format(rpmMainSpindle));
+    sOutput.reset();
 
-    const constantSurfaceSpeed = 240;
+    const toolSurfaceSpeed = getParameter('operation:tool_surfaceSpeed');
+    const constantSurfaceSpeed = typeof toolSurfaceSpeed === 'number'
+        ? toolSurfaceSpeed / 1000
+        : 240;
     writeBlock(gFormat.format(96), sOutput.format(constantSurfaceSpeed));
+    sOutput.reset();
 
-    const perRevolutionFeed = 0.25;
+    const perRevolutionFeed = getParameter('operation:tool_feedCuttingRel') || 0.25;
     writeBlock(gFormat.format(95), feedOutput.format(perRevolutionFeed));
+    feedOutput.reset();
 
     // rapid position safe plane
     writeBlock(gFormat.format(0), xOutput.format(150 / 2), zOutput.format(50));
+    xOutput.reset();
+    zOutput.reset();
 }
 
 
