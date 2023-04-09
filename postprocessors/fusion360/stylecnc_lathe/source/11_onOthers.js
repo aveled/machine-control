@@ -3,8 +3,17 @@ function onComment(message) {
 }
 
 
+
 function onCommand(command) {
     switch (command) {
 
     }
+}
+
+
+
+function onTerminate() {
+    var outputPath = getOutputPath();
+
+    // trim the lines from outputPath
 }
